@@ -305,7 +305,7 @@ int main(int argc, const char **argv)
 
     filename = argv[1];
 
-    mem_size = 17*1024*1024;
+    mem_size = 32*1024*1024;
     mem_buf = malloc(mem_size);
     ctx = JS_NewContext(mem_buf, mem_size, &js_stdlib);
     JS_SetLogFunc(ctx, js_log_func);
