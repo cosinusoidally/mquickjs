@@ -219,6 +219,28 @@ static JSValue js_performance_now(JSContext *ctx, JSValue *this_val, int argc, J
     return JS_NewInt64(ctx, get_time_ms());
 }
 
+static uint8_t *load_file(const char *filename, int *plen);
+
+/* load a script */
+static JSValue js_load(JSContext *ctx, JSValue *this_val, int argc, JSValue *argv)
+{
+    const char *filename;
+    JSCStringBuf buf_str;
+    uint8_t *buf;
+    int buf_len;
+    JSValue ret;
+
+    filename = JS_ToCString(ctx, argv[0], &buf_str);
+    if (!filename)
+        return JS_EXCEPTION;
+    buf = load_file(filename, &buf_len);
+
+    ret = JS_Eval(ctx, (const char *)buf, buf_len, filename, 0);
+    free(buf);
+    return ret;
+}
+
+
 #include "example_stdlib.h"
 
 static void js_log_func(void *opaque, const void *buf, size_t buf_len)

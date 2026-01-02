@@ -376,6 +376,7 @@ static const JSPropDef js_global_object[] = {
 #ifdef CONFIG_CLASS_EXAMPLE
     JS_PROP_CLASS_DEF("Rectangle", &js_rectangle_class),
     JS_PROP_CLASS_DEF("FilledRectangle", &js_filled_rectangle_class),
+    JS_CFUNC_DEF("load", 1, js_load),
 #else
     JS_CFUNC_DEF("gc", 0, js_gc),
     JS_CFUNC_DEF("load", 1, js_load),
