@@ -240,6 +240,24 @@ static JSValue js_load(JSContext *ctx, JSValue *this_val, int argc, JSValue *arg
     return ret;
 }
 
+static JSValue js_read(JSContext *ctx, JSValue *this_val, int argc, JSValue *argv)
+{
+    const char *filename;
+    JSCStringBuf buf_str;
+    uint8_t *buf;
+    int buf_len;
+    JSValue ret;
+
+    filename = JS_ToCString(ctx, argv[0], &buf_str);
+    if (!filename)
+        return JS_EXCEPTION;
+    buf = load_file(filename, &buf_len);
+
+    ret = JS_NewString(ctx, buf);
+    free(buf);
+    return ret;
+}
+
 
 #include "example_stdlib.h"
 
