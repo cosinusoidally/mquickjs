@@ -1,8 +1,6 @@
 ./mk_clean
 
-DEST=.
-
-FLAGS="-I.. -I $DEST -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0"
+FLAGS="-I.. -I . -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0"
 
 set -xe
 
