@@ -14,14 +14,14 @@ make clean
 
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mqjs_stdlib.host.o mqjs_stdlib_tcc.c
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mquickjs_build.host.o mquickjs_build_tcc.c
-tcc -g -o mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
+tcc -g -o $DEST/mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
 
-./mqjs_stdlib  > mqjs_stdlib.h
-./mqjs_stdlib -a  > mquickjs_atom.h
+$DEST/mqjs_stdlib  > mqjs_stdlib.h
+$DEST/mqjs_stdlib -a  > mquickjs_atom.h
 
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o example_stdlib.host.o example_stdlib_tcc.c
-tcc -g -o example_stdlib example_stdlib.host.o mquickjs_build.host.o
-./example_stdlib  > example_stdlib.h
+tcc -g -o $DEST/example_stdlib example_stdlib.host.o mquickjs_build.host.o
+$DEST/example_stdlib  > example_stdlib.h
 
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mquickjs.o mquickjs_tcc.c
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o dtoa.o dtoa.c
