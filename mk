@@ -1,5 +1,7 @@
 ./mk_clean
 
+DEST=artifacts/
+
 set -xe
 
 make clean
@@ -17,7 +19,6 @@ tcc -g -o mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
 ./mqjs_stdlib  > mqjs_stdlib.h
 ./mqjs_stdlib -a  > mquickjs_atom.h
 
-# FIXME won't compile with tcc
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o example_stdlib.host.o example_stdlib_tcc.c
 tcc -g -o example_stdlib example_stdlib.host.o mquickjs_build.host.o
 ./example_stdlib  > example_stdlib.h
@@ -28,4 +29,4 @@ tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o example.
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o libm.o libm.c
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o cutils.o cutils.c
 
-tcc -g -o example example.o mquickjs.o dtoa.o libm.o cutils.o -lm
+tcc -g -o $DEST/example example.o mquickjs.o dtoa.o libm.o cutils.o -lm
