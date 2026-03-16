@@ -14,21 +14,21 @@ make clean
 # maybe should build this to be shared
 # tcc $FLAGS -O0 -c -o builtin_tcc.o builtin_tcc.c
 
-tcc $FLAGS -c -o mqjs_stdlib.host.o mqjs_stdlib_tcc.c
-tcc $FLAGS -O0 -c -o mquickjs_build.host.o mquickjs_build_tcc.c
-tcc -g -o $DEST/mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
+tcc $FLAGS -c -o $DEST/mqjs_stdlib.host.o mqjs_stdlib_tcc.c
+tcc $FLAGS -O0 -c -o $DEST/mquickjs_build.host.o mquickjs_build_tcc.c
+tcc -g -o $DEST/mqjs_stdlib $DEST/mqjs_stdlib.host.o $DEST/mquickjs_build.host.o
 
 $DEST/mqjs_stdlib  > $DEST/mqjs_stdlib.h
 $DEST/mqjs_stdlib -a  > $DEST/mquickjs_atom.h
 
-tcc $FLAGS -c -o example_stdlib.host.o example_stdlib_tcc.c
-tcc $FLAGS -o $DEST/example_stdlib example_stdlib.host.o mquickjs_build.host.o
+tcc $FLAGS -c -o $DEST/example_stdlib.host.o example_stdlib_tcc.c
+tcc $FLAGS -o $DEST/example_stdlib $DEST/example_stdlib.host.o $DEST/mquickjs_build.host.o
 $DEST/example_stdlib  > $DEST/example_stdlib.h
 
-tcc $FLAGS -c -o mquickjs.o mquickjs_tcc.c
-tcc $FLAGS -c -o dtoa.o dtoa.c
-tcc $FLAGS -c -o example.o example.c
-tcc $FLAGS -c -o libm.o libm.c
-tcc $FLAGS -c -o cutils.o cutils.c
+tcc $FLAGS -c -o $DEST/mquickjs.o mquickjs_tcc.c
+tcc $FLAGS -c -o $DEST/dtoa.o dtoa.c
+tcc $FLAGS -c -o $DEST/example.o example.c
+tcc $FLAGS -c -o $DEST/libm.o libm.c
+tcc $FLAGS -c -o $DEST/cutils.o cutils.c
 
-tcc -g -o $DEST/example example.o mquickjs.o dtoa.o libm.o cutils.o -lm
+tcc -g -o $DEST/example $DEST/example.o $DEST/mquickjs.o $DEST/dtoa.o $DEST/libm.o $DEST/cutils.o -lm
