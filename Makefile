@@ -37,7 +37,7 @@ ifdef CONFIG_ARM32
 CFLAGS+=-mthumb
 endif
 ifdef CONFIG_SMALL
-CFLAGS+=-Os
+CFLAGS+=-O0
 else
 CFLAGS+=-O2
 endif
