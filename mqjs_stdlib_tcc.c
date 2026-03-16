@@ -26,6 +26,13 @@
 #include <stdio.h>
 #include <string.h>
 
+#undef NAN
+#undef INFINITY
+
+#define NAN        0x7ff8000000000000
+#define INFINITY   0x7ff0000000000000
+#define N_INFINITY 0xfff0000000000000
+
 #include "mquickjs_build.h"
 
 /* defined in mqjs_example.c */
@@ -78,7 +85,7 @@ static const JSPropDef js_number[] = {
     JS_PROP_DOUBLE_DEF("MAX_VALUE", 1.7976931348623157e+308, 0 ),
     JS_PROP_DOUBLE_DEF("MIN_VALUE", 5e-324, 0 ),
     JS_PROP_DOUBLE_DEF("NaN", NAN, 0 ),
-    JS_PROP_DOUBLE_DEF("NEGATIVE_INFINITY", -INFINITY, 0 ),
+    JS_PROP_DOUBLE_DEF("NEGATIVE_INFINITY", N_INFINITY, 0 ),
     JS_PROP_DOUBLE_DEF("POSITIVE_INFINITY", INFINITY, 0 ),
     JS_PROP_DOUBLE_DEF("EPSILON", 2.220446049250313e-16, 0 ), /* ES6 */
     JS_PROP_DOUBLE_DEF("MAX_SAFE_INTEGER", 9007199254740991.0, 0 ), /* ES6 */
