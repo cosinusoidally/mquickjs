@@ -10,8 +10,7 @@ make clean
 # maybe should build this to be shared
 # tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o builtin_tcc.o builtin_tcc.c
 
-# FIXME won't compile with tcc
-gcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mqjs_stdlib.host.o mqjs_stdlib_tcc.c
+tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mqjs_stdlib.host.o mqjs_stdlib_tcc.c
 tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o mquickjs_build.host.o mquickjs_build_tcc.c
 tcc -g -o mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
 
