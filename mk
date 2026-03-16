@@ -5,8 +5,7 @@ set -xe
 make clean
 make
 
-rm dtoa.o mquickjs.o example example.o libm.o cutils.o mqjs_stdlib.h mquickjs_build.host.o
-rm mquickjs_atom.h
+rm dtoa.o mquickjs.o example example.o libm.o cutils.o mqjs_stdlib.h mquickjs_build.host.o mquickjs_atom.h
 
 # maybe should build this to be shared
 # tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o builtin_tcc.o builtin_tcc.c
