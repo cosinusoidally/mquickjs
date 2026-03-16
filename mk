@@ -18,7 +18,7 @@ tcc -g -o mqjs_stdlib mqjs_stdlib.host.o mquickjs_build.host.o
 ./mqjs_stdlib -a  > mquickjs_atom.h
 
 # FIXME won't compile with tcc
-gcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o example_stdlib.host.o example_stdlib.c
+tcc -Wall -g -D_GNU_SOURCE -fno-math-errno -fno-trapping-math -O0 -c -o example_stdlib.host.o example_stdlib_tcc.c
 tcc -g -o example_stdlib example_stdlib.host.o mquickjs_build.host.o
 ./example_stdlib  > example_stdlib.h
 
