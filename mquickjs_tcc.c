@@ -6126,8 +6126,7 @@ JSValue JS_Call(JSContext *ctx, int call_flags)
                 op2 = sp[0];
                 if (likely(JS_VALUE_IS_BOTH_INT(op1, op2))) {
                     int r;
-                    if (unlikely(__builtin_add_overflow((int)op1, (int)op2, &r)))
-                        goto add_slow;
+                    goto add_slow;
                     sp[1] = (uint32_t)r;
                 } else 
 #ifdef JS_USE_SHORT_FLOAT
@@ -6159,8 +6158,7 @@ JSValue JS_Call(JSContext *ctx, int call_flags)
                 op2 = sp[0];
                 if (likely(JS_VALUE_IS_BOTH_INT(op1, op2))) {
                     int r;
-                    if (unlikely(__builtin_sub_overflow((int)op1, (int)op2, &r)))
-                        goto binary_arith_slow;
+                    goto binary_arith_slow;
                     sp[1] = (uint32_t)r;
                 } else
 #ifdef JS_USE_SHORT_FLOAT
